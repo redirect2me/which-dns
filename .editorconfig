@@ -1,0 +1,25 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+
+[*.go]
+tab_width = 4
+indent_style = tab
+
+[*]
+end_of_line = lf
+charset = utf-8
+indent_size = 4
+indent_style = space
+
+[*.yaml]
+indent_size = 2
+
+[*.json]
+indent_size = 2
+
+[*.sql]
+tab_width = 4
+indent_style = tab
