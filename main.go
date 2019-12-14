@@ -2,9 +2,7 @@ package main
 
 import (
     "flag"
-    "fmt"
 	"net"
-	"net/http"
 	"strconv"
 	"github.com/miekg/dns"
 	"log"
@@ -74,15 +72,6 @@ func dns_main() {
 	}
 }
 
-func web_handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
-}
-
-func web_main() {
-	http.HandleFunc("/", web_handler)
-	http.HandleFunc("/debug.txt", lookup_debug_handler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
-}
 
 func main() {
 
