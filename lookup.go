@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"net/http"
+    "net/http"
+    "strings"
 	//"sync"
 	//"log"
 )
@@ -32,4 +33,8 @@ func lookup_get(hostname string) (string) {
 
 func lookup_set(hostname string, address string) {
 	lookupMap[hostname] = address
+}
+
+func normalize(hostname string) string {
+	return strings.ToLower(strings.TrimSpace(hostname))
 }

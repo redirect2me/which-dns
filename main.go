@@ -75,6 +75,8 @@ func dns_main() {
 
 func main() {
 
+    flag.Parse()
+
 	lookup_init()
 
 	go dns_main()
