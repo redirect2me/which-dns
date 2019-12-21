@@ -5,17 +5,22 @@ import (
 	"net"
 	"strconv"
 	"github.com/miekg/dns"
-	"log"
+    "log"
+    "os"
 )
 
 var (
     //verbose = flag.Bool("verbose", true, "verbose logging");
     //debug = flag.Bool("debug", false, "print instead of redirect");
     //port = flag.Int("port", 80, "port to listen on");
+    local = flag.Bool("local", false, "local development (=no https)");
+
     hostname = flag.String("hostname", "localhost", "hostname of this server");
+    ipaddress = flag.String("ipaddress", "127.0.0.1", "public ip address of this server");
+
     //action = flag.String("action", "lookup", "action [lookup|addwww|removewww]");
 
-    //logger = log.New(os.Stdout, "R2ME: ", log.Ldate | log.Ltime | log.Lmicroseconds | log.LUTC);
+    logger = log.New(os.Stdout, "WHICH-DNS: ", log.Ldate | log.Ltime | log.Lmicroseconds | log.LUTC);
 )
 type handler struct{}
 
@@ -40,7 +45,7 @@ func (this *handler) ServeDNS(w dns.ResponseWriter, r *dns.Msg) {
 	msg.SetReply(r)
     domain := msg.Question[0].Name
     lookup_set(domain, caller)
-    log.Printf("INFO: resolving %s\n", domain)
+    logger.Printf("INFO: resolving %s %x\n", domain, r.Question[0].Qtype)
 
 	t := &dns.TXT{
 		Hdr: dns.RR_Header{Name: domain, Rrtype: dns.TypeTXT, Class: dns.ClassINET, Ttl: 0},
@@ -50,7 +55,7 @@ func (this *handler) ServeDNS(w dns.ResponseWriter, r *dns.Msg) {
 	switch r.Question[0].Qtype {
 	case dns.TypeA:
 		msg.Authoritative = true
-		address := "127.0.0.1"
+		address := *ipaddress
         msg.Answer = append(msg.Answer, &dns.A{
             Hdr: dns.RR_Header{Name: domain, Rrtype: dns.TypeA, Class: dns.ClassINET, Ttl: 60},
             A:   net.ParseIP(address),
@@ -63,7 +68,7 @@ func (this *handler) ServeDNS(w dns.ResponseWriter, r *dns.Msg) {
 var done = make(chan bool)
 
 func dns_main() {
-	log.Printf("INFO: starting DNS\n")
+	logger.Printf("INFO: starting DNS\n")
 	srv := &dns.Server{Addr: ":" + strconv.Itoa(53), Net: "udp"}
 	srv.Handler = &handler{}
 	if err := srv.ListenAndServe(); err != nil {
@@ -85,5 +90,5 @@ func main() {
 
 	<-done
 
-	log.Printf("INFO: done\n")
+	logger.Printf("INFO: done\n")
 }

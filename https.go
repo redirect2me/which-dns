@@ -1,26 +1,43 @@
 package main
 
 import (
-    "fmt"
+    //"fmt"
     "github.com/mholt/certmagic"
+    "github.com/go-acme/lego/v3/challenge/dns01"
 )
 
+type LocalDNSProvider struct {
+}
+
+func (d *LocalDNSProvider) Present(domain, token, keyAuth string) error {
+
+    logger.Printf("INFO: presenting '%s'", domain);
+
+    fqdn, value := dns01.GetRecord(domain, keyAuth)
+    lookup_set("DNS01:" + fqdn, value)
+
+    logger.Printf("INFO: result='%s' and '%s'", fqdn, value);
+
+    return nil
+}
+
+func (d *LocalDNSProvider) CleanUp(domain, token, keyAuth string) error {
+
+    logger.Printf("INFO: cleaning up '%s'", dns01.ToFqdn(domain));
+
+    lookup_set("DNS01:" + domain, "")
+    return nil
+}
+
+
 func https_init() {
-    // read and agree to your CA's legal documents
     certmagic.Default.Agreed = true
 
-    // provide an email address
     certmagic.Default.Email = "fileformat@gmail.com"
 
-    // use the staging endpoint while we're developing
-    certmagic.Default.CA = certmagic.LetsEncryptStagingCA
+    certmagic.Default.CA = certmagic.LetsEncryptProductionCA
 
-    certmagic.Default.OnDemand = &certmagic.OnDemandConfig{
-        DecisionFunc: func(name string) error {
-            if name != "example.com" {
-                return fmt.Errorf("not allowed")
-            }
-            return nil
-        },
-    }
+    certmagic.Default.DNSProvider = &LocalDNSProvider{}
+    certmagic.Default.DisableHTTPChallenge = true
+    certmagic.Default.DisableTLSALPNChallenge = true
 }

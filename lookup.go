@@ -27,12 +27,17 @@ func lookup_debug_handler(w http.ResponseWriter, r *http.Request) {
 
 //LATER: locking, per https://blog.golang.org/go-maps-in-action
 
-func lookup_get(hostname string) (string) {
-	return lookupMap[hostname]
+func lookup_get(hostname string) (string, bool) {
+    val, ok := lookupMap[normalize(hostname)]
+    return val, ok
 }
 
 func lookup_set(hostname string, address string) {
-	lookupMap[hostname] = address
+    if (address == "") {
+        delete(lookupMap, hostname)
+    } else {
+        lookupMap[normalize(hostname)] = address
+    }
 }
 
 func normalize(hostname string) string {

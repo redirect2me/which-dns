@@ -1,0 +1,5 @@
+*~
+.env
+*.env
+tmp/
+*.tmp

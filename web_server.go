@@ -1,7 +1,7 @@
 package main
 
 import (
-    "log"
+    "net"
 	"net/http"
     "github.com/mholt/certmagic"
 )
@@ -14,15 +14,35 @@ type apiResult struct {
 }
 
 func api_handler(w http.ResponseWriter, r *http.Request) {
-	result := apiResult{}
+    result := apiResult{}
 
-	result.Input = r.FormValue("q")
-	if result.Input == "" {
+    hostname, _, err := net.SplitHostPort(r.Host)
+    if err != nil {
+        result.Input = r.Host
+        result.Success = false
+        result.Message = "Unable to split host/port"
+        logger.Printf("WARNING: lookup failed %s (%s)", result.Message, r.Host)
+        write_with_callback(w, r, result)
+        return
+    }
+
+	if hostname == "" {
 		result.Success = false
-		result.Message = "Missing 'q' parameter"
+        result.Message = "URL has no host"
+        logger.Printf("WARNING: lookup failed %s (%s/%s)", result.Message, r.Host, r.URL.String())
 		write_with_callback(w, r, result)
 		return
-	}
+    }
+
+    hostname += "."
+	result.Input = hostname
+
+    result.Output, result.Success = lookup_get(hostname)
+    if !result.Success {
+        result.Message = "hostname not found in cache"
+        logger.Printf("WARNING: lookup failed %s (%s/%s)", result.Message, hostname)
+    }
+
 
 	write_with_callback(w, r, result)
 }
@@ -63,10 +83,17 @@ func web_main() {
 	mux.HandleFunc("/", root_handler)
 	mux.HandleFunc("/favicon.ico", favicon_ico_handler)
 	mux.HandleFunc("/favicon.svg", favicon_svg_handler)
-	mux.HandleFunc("/robots.txt", robots_txt_handler)
+    mux.HandleFunc("/robots.txt", robots_txt_handler)
+    mux.HandleFunc("/status.json", status_handler)
 	mux.HandleFunc("/debug.txt", lookup_debug_handler)
-	mux.HandleFunc("/api.json", api_handler)
-    //log.Fatal(http.ListenAndServe(":8080", mux))
-    log.Printf("INFO: starting web server");
-    certmagic.HTTPS([]string{}, mux)
+    mux.HandleFunc("/api.json", api_handler)
+
+    if (*local) {
+        logger.Printf("WARNING: running locally w/o https")
+        logger.Fatal(http.ListenAndServe(":4000", mux))
+    } else {
+        https_init()
+        logger.Printf("INFO: starting web server on %s", *hostname);
+        certmagic.HTTPS([]string{"*." + *hostname, *hostname}, mux)
+    }
 }
