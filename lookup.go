@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-    "net/http"
-    "strings"
+	"io"
+	"strings"
 	//"sync"
 	//"log"
 )
@@ -15,7 +15,7 @@ func lookup_init() {
 	lookupMap["localhost"] = "127.0.0.1"
 }
 
-func lookup_debug_handler(w http.ResponseWriter, r *http.Request) {
+func lookup_debug(w io.Writer) {
 	fmt.Fprintf(w, "%d entries in map\n", len(lookupMap))
 
 	if len(lookupMap) > 0 {
@@ -28,16 +28,16 @@ func lookup_debug_handler(w http.ResponseWriter, r *http.Request) {
 //LATER: locking, per https://blog.golang.org/go-maps-in-action
 
 func lookup_get(hostname string) (string, bool) {
-    val, ok := lookupMap[normalize(hostname)]
-    return val, ok
+	val, ok := lookupMap[normalize(hostname)]
+	return val, ok
 }
 
 func lookup_set(hostname string, address string) {
-    if (address == "") {
-        delete(lookupMap, hostname)
-    } else {
-        lookupMap[normalize(hostname)] = address
-    }
+	if address == "" {
+		delete(lookupMap, hostname)
+	} else {
+		lookupMap[normalize(hostname)] = address
+	}
 }
 
 func normalize(hostname string) string {

@@ -17,5 +17,8 @@ fi
 
 export $(cat ${ENV_FILE})
 
-./which-dns -hostname=${HOSTNAME} -ipaddress=${IPADDRESS}
+rm -f ~/.local/share/certmagic/locks/cert_acme_which.resolve.rs_httpsacme-v02.api.letsencrypt.orgdirectory.lock
+
+./which-dns -email=${EMAIL} -hostname=${HOSTNAME} -ipaddress=${IPADDRESS} -nshostname=${NSHOSTNAME}
 # -local
+# -verbose
