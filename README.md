@@ -9,7 +9,21 @@ This is a combined DNS+HTTP server that shows which DNS server a computer is usi
 2. All hostnames resolve to the same IP, but the DNS server records which IP address the query came from.
 3. The webserver looks for this record and returns it.
 
-## Running
+## Using
+
+My server is running at `which.resolve.rs`.  
+
+Be forewarned: it is running on the cheapest box I could find with a static IP.  You can hit it for light, non-commercial use.  I specifically made the API be JSONP only (i.e. you need to provide a `callback` parameter), so if you abuse it, bad things will happen to your clients!
+
+Make an HTTPS request to `GUID.which.resolve.rs/api.json?callback=myfunction`.  The `GUID` should be a unique string (not necessarily an actual GUID), different for every call. It will call `myfunction` with an object that has the following fields:
+
+* `success` - boolean if it succeeded or not
+* `output` - the result (if it succeeded)
+* `message` - the error message (if it failed)
+
+You can see it in action on the home page of [resolve.rs](https://resolve.rs).
+
+## Running your own copy
 
 You need a static IP address to run this server.  
 
@@ -33,7 +47,7 @@ The program needs access to the following ports:
 
 The following parameters are required:
 
-* email: the email address for your account with Let's Encrypt
+* email: the email address for your account with Let's Encrypt (and the SOA record)
 * hostname: the `hostname` that you picked
 * ipaddress: the public IP address of the server
 * nshostname: the `nshostname` that you picked

@@ -41,3 +41,9 @@
 ```
 systemctl disable systemd-resolved.service
 ```
+
+and in `/etc/resolv.conf`
+
+```
+nameserver 8.8.8.8
+```
