@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/google/uuid"
 	"github.com/mholt/certmagic"
 )
 
@@ -88,8 +89,31 @@ Disallow: /`))
 
 func root_handler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path[1:] == "" {
-		w.Header().Set("Content-Type", "text/plain; charset=utf8")
-		w.Write([]byte(`This is an API-only server.  See https://resolve.rs/ for more info`))
+		w.Header().Set("Content-Type", "text/html; charset=utf8")
+		w.Write([]byte(`<html>
+	<head>
+		<title>which-dns</title>
+	</head>
+	<body>
+		<p>
+			Your DNS Server: 
+			<span id="result"><img src="https://www.redirect2.me/images/spinner.svg" style="height:16pt;" /></span>
+			<a href="https://resolve.rs/">More info</a>
+		</p>
+		<script>
+			function updateResolver(data) {
+				console.log(data);
+				var el = document.getElementById("result");
+				if (data.success) {
+					el.innerText = data.output;
+				} else {
+					el.innerText = data.message;
+				}
+			}
+		</script>
+		<script src="https://` + uuid.New().String() + `.which.resolve.rs/api.json?callback=updateResolver"></script>
+	</body>
+</html>`))
 	} else {
 		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 	}
