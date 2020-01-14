@@ -4,20 +4,23 @@ import (
 	"net"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/google/uuid"
 	"github.com/mholt/certmagic"
 )
 
 type apiResult struct {
-	Success bool   `json:"success"`
-	Message string `json:"message,omitempty"`
-	Input   string `json:"input,omitempty"`
-	Output  string `json:"output,omitempty"`
+	Success   bool   `json:"success"`
+	Timestamp string `json:"timestamp"`
+	Message   string `json:"message,omitempty"`
+	Input     string `json:"input,omitempty"`
+	Output    string `json:"output,omitempty"`
 }
 
 func api_handler(w http.ResponseWriter, r *http.Request) {
 	result := apiResult{}
+	result.Timestamp = time.Now().UTC().Format(time.RFC3339)
 
 	callback := r.FormValue("callback")
 	if callback == "" {
