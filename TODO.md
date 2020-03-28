@@ -2,9 +2,30 @@
 
 ## Coding
 
+- [ ] [LRU cache](https://github.com/hashicorp/golang-lru) instead of map
+- [ ] http request logging
+- [ ] better root text (only on subdomains)
+- [ ] debug page to json
+- [ ] another debug page with distinct DNS servers
+- [ ] root redirect to subdomain
+
+## Packaging
+
+- [ ] init script
+- [ ] deployable pkg (apt? snap? terraform?)
+- [ ] local resolver should not be 127.0.0.1
+
+## Future
+
+- [ ] test IPv6
+- [ ] support for dns lookup of version.bind, hostname.bind
+- [ ] use redis instead of local map
+- [ ] [self updating](https://github.com/inconshreveable/go-update)?
+
+## Done
+
 - [x] map for guid->ipaddress lookups
 - [x] hostname normalization
-- [ ] thread-safety for map
 - [x] /debug.txt - list all entries in map
 - [x] /api.json
 - [x] parameter for base hostname
@@ -13,21 +34,6 @@
 - [x] /status.json
 - [x] /favicon.ico/svg
 - [x] /robots.txt
-- [ ] http request logging
-- [ ] better root text (only on subdomains)
-- [ ] root redirect to subdomain
-
-## Packaging
-
-- [ ] init script
-- [ ] deployable pkg (apt? snap?)
-- [ ] local resolver should not be 127.0.0.1
-
-## Future
-
-- [ ] test IPv6
-- [ ] support for dns lookup of version.bind, hostname.bind
-- [ ] use redis instead of local map
 
 ## Resources
 
