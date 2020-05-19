@@ -4,10 +4,14 @@
 
 - [ ] [LRU cache](https://github.com/hashicorp/golang-lru) instead of map
 - [ ] http request logging
-- [ ] better root text (only on subdomains)
 - [ ] debug page to json
 - [ ] another debug page with distinct DNS servers
-- [ ] root redirect to subdomain
+
+## Public page
+
+- [ ] root page on subdomains should redirect to primary domain
+- [ ] analytics/tracking
+- [ ] pass ref parameter to ASN lookup
 
 ## Packaging
 

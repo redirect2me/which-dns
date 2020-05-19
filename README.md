@@ -11,7 +11,7 @@ This is a combined DNS+HTTP server that shows which DNS server a computer is usi
 
 ## Using
 
-My server is running at `which.resolve.rs`.  
+My server is running at `which.resolve.rs`.
 
 Be forewarned: it is running on the cheapest box I could find with a static IP.  You can hit it for light, non-commercial use.  I specifically made the API be JSONP only (i.e. you need to provide a `callback` parameter), so if you abuse it, bad things will happen to your clients!
 
@@ -25,7 +25,7 @@ You can see it in action on the home page of [resolve.rs](https://resolve.rs).
 
 ## Running your own copy
 
-You need a static IP address to run this server.  
+You need a static IP address to run this server.
 
 Then you need to decide on two host names:
 
@@ -67,4 +67,4 @@ The following parameters are required:
 [![Ubuntu](https://www.vectorlogo.zone/logos/ubuntu/ubuntu-ar21.svg)](https://www.ubuntu.com/ "Server operating system")
 
 * [certmagic](https://github.com/mholt/certmagic)
-* 
+* [water.css](https://watercss.netlify.app/)

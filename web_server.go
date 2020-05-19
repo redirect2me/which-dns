@@ -95,24 +95,58 @@ func root_handler(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html; charset=utf8")
 		w.Write([]byte(`<html>
 	<head>
-		<title>which-dns</title>
+    <meta charset="utf-8">
+        <title>which-dns</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css" />
 	</head>
-	<body>
+    <body>
+        <h1>
+            <img alt="Which DNS logo" src="favicon.svg" style="height:2.2em;vertical-align:middle;" />
+            Which DNS
+        </h1>
+        <p>
+            Determine which DNS servers you are actually using.
+        </p>
 		<p>
-			Your DNS Server: 
-			<span id="result"><img src="https://www.redirect2.me/images/spinner.svg" style="height:16pt;" /></span>
-			<a href="https://resolve.rs/">More info</a>
+			Your DNS Server:
+			<span id="ipresult"><img src="https://www.redirect2.me/images/spinner.svg" style="height:16pt;" /></span>
+			<span id="dnsresult" style="display:none;"><img src="https://www.redirect2.me/images/spinner.svg" style="height:16pt;" /></span>
 		</p>
+        <p>
+            <a href="https://github.com/redirect2me/which-dns">How this works</a>, including source code!
+        </p>
+        <p>
+            More troubleshooting tools are available at <a href="https://resolve.rs/tools.html">resolve.rs</a>.
+        </p>
 		<script>
 			function updateResolver(data) {
-				console.log(data);
-				var el = document.getElementById("result");
+				console.log('DNS resolver data', data);
+				var el = document.getElementById("ipresult");
 				if (data.success) {
-					el.innerText = data.output;
+                    el.innerText = data.output;
+                    var asnel = document.getElementById("dnsresult");
+                    asnel.style.display = 'inline';
+                    var head = document.getElementsByTagName('head')[0];
+                    var script = document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.src = 'https://resolve.rs/dns/reverse-lookup.json?callback=updateReverseDns&ipaddress=' + data.output;
+                    head.appendChild(script);
+                    console.log(asnel);
 				} else {
 					el.innerText = data.message;
 				}
-			}
+            }
+
+            function updateReverseDns(data) {
+                console.log('Reverse DNS data', data);
+                var el = document.getElementById("dnsresult");
+                if (data.success && data.results && data.results.length > 0) {
+                    el.innerText = data.asn + ": " + data.results[0];
+                } else {
+                    el.innerText = data.asn;
+                }
+            }
 		</script>
 		<script src="https://` + uuid.New().String() + `.which.resolve.rs/api.json?callback=updateResolver"></script>
 	</body>
