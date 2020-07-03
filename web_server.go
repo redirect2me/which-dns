@@ -130,7 +130,7 @@ func root_handler(w http.ResponseWriter, r *http.Request) {
                     var head = document.getElementsByTagName('head')[0];
                     var script = document.createElement('script');
                     script.type = 'text/javascript';
-                    script.src = 'https://resolve.rs/dns/reverse-lookup.json?callback=updateReverseDns&ipaddress=' + data.output;
+                    script.src = 'https://resolve.rs/dns/reverse-lookup.json?callback=updateReverseDns&ip=' + data.output;
                     head.appendChild(script);
                     console.log(asnel);
 				} else {
