@@ -24,6 +24,7 @@ GOOS=linux GOARCH=amd64 go build \
     .
 
 echo "INFO: copying to server"
-scp -i ~/.ssh/do do-run.sh which-dns .env root@${IPADDRESS}:
+scp -i ~/.ssh/do do-run.sh .env root@${IPADDRESS}:
+scp -i ~/.ssh/do which-dns root@${IPADDRESS}:which-dns.new
 
 echo "INFO: done!"

@@ -148,7 +148,7 @@ func root_handler(w http.ResponseWriter, r *http.Request) {
                 }
             }
 		</script>
-		<script src="https://` + uuid.New().String() + `.which.resolve.rs/api.json?callback=updateResolver"></script>
+		<script src="https://` + uuid.New().String() + `.which.nameserve.rs/api.json?callback=updateResolver"></script>
 	</body>
 </html>`))
 	} else {
