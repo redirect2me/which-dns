@@ -1,4 +1,4 @@
-# Which DNS: DNS Resolver Detection [<img alt="Which DNS Logo" src="assets/favicon.svg" height="90" align="right"/>](https://resolve.rs/)
+# Which DNS: DNS Resolver Detection [<img alt="Which DNS Logo" src="assets/favicon.svg" height="90" align="right"/>](https://which.nameserve.rs/)
 
 This is a combined DNS+HTTP server that shows which DNS server a computer is using.
 
@@ -11,17 +11,17 @@ This is a combined DNS+HTTP server that shows which DNS server a computer is usi
 
 ## Using
 
-My server is running at `which.resolve.rs`.
+My server is running at `which.nameserve.rs`.
 
 Be forewarned: it is running on the cheapest box I could find with a static IP.  You can hit it for light, non-commercial use.  I specifically made the API be JSONP only (i.e. you need to provide a `callback` parameter), so if you abuse it, bad things will happen to your clients!
 
-Make an HTTPS request to `GUID.which.resolve.rs/api.json?callback=myfunction`.  The `GUID` should be a unique string (not necessarily an actual GUID), different for every call. It will call `myfunction` with an object that has the following fields:
+Make an HTTPS request to `GUID.which.nameserve.rs/api.json?callback=myfunction`.  The `GUID` should be a unique string (not necessarily an actual GUID), different for every call. It will call `myfunction` with an object that has the following fields:
 
 * `success` - boolean if it succeeded or not
 * `output` - the result (if it succeeded)
 * `message` - the error message (if it failed)
 
-You can see it in action on the home page of [resolve.rs](https://resolve.rs).
+You can see it in action on the home page of [resolve.rs](https://resolve.rs/).
 
 ## Running your own copy
 
@@ -57,7 +57,7 @@ The following parameters are required:
 [GNU Affero General Public License v3.0](LICENSE.txt)
 
 ## Credits
-
+[![certmagic](https://www.vectorlogo.zone/logos/github_mholt_certmagic/github_mholt_certmagic-ar21.svg)](https://github.com/mholt/certmagic "Certificate management")
 [![Digital Ocean](https://www.vectorlogo.zone/logos/digitalocean/digitalocean-ar21.svg)](https://www.digitalocean.com/ "Hosting")
 [![Git](https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg)](https://git-scm.com/ "Version control")
 [![Github](https://www.vectorlogo.zone/logos/github/github-ar21.svg)](https://github.com/ "Code hosting")
@@ -65,6 +65,4 @@ The following parameters are required:
 [![Let's Encrypt](https://www.vectorlogo.zone/logos/letsencrypt/letsencrypt-ar21.svg)](https://letsencrypt.org/ "HTTPS certificates")
 [![svgrepo](https://www.vectorlogo.zone/logos/svgrepo/svgrepo-ar21.svg)](https://www.svgrepo.com/svg/277712/witch "favicon (modified)")
 [![Ubuntu](https://www.vectorlogo.zone/logos/ubuntu/ubuntu-ar21.svg)](https://www.ubuntu.com/ "Server operating system")
-
-* [certmagic](https://github.com/mholt/certmagic)
-* [water.css](https://watercss.netlify.app/)
+[![water.css](https://www.vectorlogo.zone/logos/netlifyapp_watercss/netlifyapp_watercss-ar21.svg)](https://watercss.netlify.app/ "Classless CSS")
