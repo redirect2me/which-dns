@@ -57,6 +57,7 @@ The following parameters are required:
 [GNU Affero General Public License v3.0](LICENSE.txt)
 
 ## Credits
+
 [![certmagic](https://www.vectorlogo.zone/logos/github_mholt_certmagic/github_mholt_certmagic-ar21.svg)](https://github.com/mholt/certmagic "Certificate management")
 [![Digital Ocean](https://www.vectorlogo.zone/logos/digitalocean/digitalocean-ar21.svg)](https://www.digitalocean.com/ "Hosting")
 [![Git](https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg)](https://git-scm.com/ "Version control")
@@ -66,3 +67,13 @@ The following parameters are required:
 [![svgrepo](https://www.vectorlogo.zone/logos/svgrepo/svgrepo-ar21.svg)](https://www.svgrepo.com/svg/277712/witch "favicon (modified)")
 [![Ubuntu](https://www.vectorlogo.zone/logos/ubuntu/ubuntu-ar21.svg)](https://www.ubuntu.com/ "Server operating system")
 [![water.css](https://www.vectorlogo.zone/logos/netlifyapp_watercss/netlifyapp_watercss-ar21.svg)](https://watercss.netlify.app/ "Classless CSS")
+
+## Alternatives
+
+I wasn't the first person to come up with this idea.  Here are some other public sites that do the same thing:
+
+* [dnsleaktest](https://dnsleaktest.com/)
+* [whatsmydnsserver](http://www.whatsmydnsserver.com/)
+* [ipleak.net](https://ipleak.net/) - a bit of information overload though.
+* [benchmark from GRC](https://www.grc.com/dns/benchmark.htm) - fat-client tool to benchmark which DNS servers are fastest from your workstation.
+* [dnsadblock](https://dnsadblock.com/dns-leak-test/)
