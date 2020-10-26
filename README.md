@@ -78,3 +78,4 @@ I wasn't the first person to come up with this idea.  Here are some other public
 * [ipleak.net](https://ipleak.net/) - a bit of information overload though.
 * [benchmark from GRC](https://www.grc.com/dns/benchmark.htm) - fat-client tool to benchmark which DNS servers are fastest from your workstation.
 * [dnsadblock](https://dnsadblock.com/dns-leak-test/)
+* [akahelp.net](https://developer.akamai.com/blog/2018/05/10/introducing-new-whoami-tool-dns-resolver-information) - name server that you can use with `dig`
