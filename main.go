@@ -26,11 +26,12 @@ func main() {
 
 	flag.Parse()
 	if *verbose {
-		logger.Printf("DEBUG: email     = %s", *email)
-		logger.Printf("DEBUG: hostname  = %s", *hostname)
-		logger.Printf("DEBUG: ipaddress = %s", *ipaddress)
+		logger.Printf("DEBUG: email       = %s", *email)
+		logger.Printf("DEBUG: hostname    = %s", *hostname)
+		logger.Printf("DEBUG: ipaddress   = %s", *ipaddress)
 		logger.Printf("DEBUG: nshostname  = %s", *nshostname)
-		logger.Printf("DEBUG: verbose   = %v", *verbose)
+		logger.Printf("DEBUG: tracker     = %s", *tracker)
+		logger.Printf("DEBUG: verbose     = %v", *verbose)
 	}
 
 	lookup_init()

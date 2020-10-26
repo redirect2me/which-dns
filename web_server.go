@@ -112,7 +112,7 @@ func root_handler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(`<html>
 	<head>
 	<meta charset="utf-8">
-		<title>which-dns</title>
+		<title>Which DNS</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css" />
 	</head>

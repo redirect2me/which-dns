@@ -2,15 +2,18 @@
 
 ## Coding
 
+- [ ] master -> main
+- [ ] [Daemon](https://ieftimov.com/post/four-steps-daemonize-your-golang-programs/)
+- [ ] Github Actions: make a release on github
 - [ ] [LRU cache](https://github.com/hashicorp/golang-lru) instead of map
 - [ ] http request logging
 - [ ] debug page to json
 - [ ] another debug page with distinct DNS servers
+- [ ] recognize if nameserver IP == client IP and then note it is self-hosted
 
 ## Public page
 
 - [ ] root page on subdomains should redirect to primary domain
-- [ ] analytics/tracking
 - [ ] pass ref parameter to ASN lookup
 
 ## Packaging

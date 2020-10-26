@@ -1,4 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# run locally
+#
+# NOTE: this may need to be run with 'sudo'
+#
 
 set -o errexit
 set -o pipefail
