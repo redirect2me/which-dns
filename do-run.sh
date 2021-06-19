@@ -20,6 +20,7 @@ export $(cat ${ENV_FILE})
 rm -f ~/.local/share/certmagic/locks/cert_acme_which.resolve.rs_httpsacme-v02.api.letsencrypt.orgdirectory.lock
 
 ./which-dns \
+	"-disclaimer=For light, non-commerical use only!" \
 	-email=${EMAIL} \
 	-hostname=${HOSTNAME} \
 	-ipaddress=${IPADDRESS} \

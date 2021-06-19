@@ -2,7 +2,6 @@
 
 ## Coding
 
-- [ ] master -> main
 - [ ] [Daemon](https://ieftimov.com/post/four-steps-daemonize-your-golang-programs/)
 - [ ] Github Actions: make a release on github
 - [ ] [LRU cache](https://github.com/hashicorp/golang-lru) instead of map

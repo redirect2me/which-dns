@@ -15,4 +15,5 @@ LASTMOD=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 go run \
     -ldflags "-X main.COMMIT=${COMMIT} -X main.LASTMOD=${LASTMOD}" \
     . \
-    -local
+    -local \
+    "-disclaimer=warnings go here"
