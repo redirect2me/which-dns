@@ -172,7 +172,7 @@ func root_handler(w http.ResponseWriter, r *http.Request) {
 		<p>
 			Your DNS Server:
 			<span id="ipresult"><img src="/images/spinner.svg" style="height:16pt;" /></span>
-			<span id="dnsresult" style="display:none;"><img src="https://www.redirect2.me/images/spinner.svg" style="height:16pt;" /></span>
+			<span id="dnsresult" style="display:none;"><img src="/images/spinner.svg" style="height:16pt;" /></span>
 		</p>
 		<p>
 			<a href="https://github.com/redirect2me/which-dns">How this works</a>, including source code!
