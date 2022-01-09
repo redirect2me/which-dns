@@ -73,6 +73,7 @@ The following parameters are required:
 
 I wasn't the first person to come up with this idea.  Here are some other public sites that do the same thing:
 
+* [DNS-OARC's Check My DNS](https://cmdns.dev.dns-oarc.net/) - comprehensive: see the popup under "Network".
 * [dnsleaktest](https://dnsleaktest.com/)
 * [whatsmydnsserver](http://www.whatsmydnsserver.com/)
 * [ipleak.net](https://ipleak.net/) - a bit of information overload though.
