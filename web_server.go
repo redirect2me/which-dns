@@ -83,7 +83,7 @@ func favicon_svg_handler(w http.ResponseWriter, r *http.Request) {
 
 func spinner_svg_handler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "image/svg+xml; charset=utf8")
-	w.Write([]byte(`<svg id="svg-zone-spinner" viewBox="0 0 50 50" width="100%" height="100%">
+	w.Write([]byte(`<svg id="svg-zone-spinner" viewBox="0 0 50 50" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
 	<g stroke="black" stroke-width="2" stroke-linecap="round">
 		<path opacity=".3" d="M29 18.071797 L33, 11.143594"/>
 		<path opacity=".3"  d="M31.928203 21 L38.856406 17" />
