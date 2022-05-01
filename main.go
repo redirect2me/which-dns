@@ -15,6 +15,7 @@ var (
 	ipaddress  = flag.String("ipaddress", "127.0.0.1", "public ip address of this server")
 	local      = flag.Bool("local", false, "local development (=no https, high ports)")
 	nshostname = flag.String("nshostname", "localhost-ns", "hostname used as the authoritative DNS server (NS record)")
+	proxy      = flag.Bool("proxy", false, "behind a trusted proxy (for recording source IP address)")
 	tracker    = flag.String("tracker", "", "URL of tracking pixel")
 	verbose    = flag.Bool("verbose", true, "verbose logging")
 

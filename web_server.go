@@ -16,7 +16,21 @@ type apiResult struct {
 	Message    string `json:"message,omitempty"`
 	Input      string `json:"input,omitempty"`
 	Output     string `json:"output,omitempty"`
+	Source     string `json:"source"`
 	Disclaimer string `json:"disclaimer,omitempty"`
+}
+
+func getRemoteIP(req *http.Request) string {
+	if *proxy {
+		remoteIPs := req.Header.Get("X-Forwarded-For")
+		comma := strings.Index(remoteIPs, ",")
+		if comma == -1 {
+			return remoteIPs
+		}
+		return remoteIPs[0:comma]
+	}
+	remoteIP, _, _ := net.SplitHostPort(req.RemoteAddr)
+	return remoteIP
 }
 
 func api_handler(w http.ResponseWriter, r *http.Request) {
@@ -63,6 +77,7 @@ func api_handler(w http.ResponseWriter, r *http.Request) {
 		result.Message = "hostname not found in cache"
 		logger.Printf("WARNING: lookup failed %s (%s)", result.Message, hostname)
 	}
+	result.Source = getRemoteIP(r)
 
 	write_with_callback(w, r, result)
 }
@@ -185,7 +200,7 @@ func root_handler(w http.ResponseWriter, r *http.Request) {
 				console.log('DNS resolver data', data);
 				var el = document.getElementById("ipresult");
 				if (data.success) {
-					el.innerText = data.output;
+					el.innerText = data.output + (data.output == data.source ? " (self-hosted)" : "");
 					var asnel = document.getElementById("dnsresult");
 					asnel.style.display = 'inline';
 					var head = document.getElementsByTagName('head')[0];

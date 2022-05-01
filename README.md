@@ -20,6 +20,7 @@ Make an HTTPS request to `GUID.which.nameserve.rs/api.json?callback=myfunction`.
 * `success` - boolean if it succeeded or not
 * `output` - the result (if it succeeded)
 * `message` - the error message (if it failed)
+* `source` - the source IP address (useful for detecting self-hosted DNS)
 
 You can see it in action on the home page of [resolve.rs](https://resolve.rs/).
 
@@ -51,6 +52,11 @@ The following parameters are required:
 * hostname: the `hostname` that you picked
 * ipaddress: the public IP address of the server
 * nshostname: the `nshostname` that you picked
+
+Optional parameters:
+
+* disclaimer: text to include in every response (for example: "no commercial use")
+* proxy: true if behind a trusted proxy (uses `X-Forwarded-For` header)
 
 ## License
 
