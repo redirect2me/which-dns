@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (semver)'
+        required: true
+        type: string
+
+env:
+  VERSION: ${{inputs.version}}
+
+jobs:
+  # Push image to GitHub Packages.
+  release:
+    name: Release
+
+    runs-on: ubuntu-22.04
+
+    steps:
+      # https://github.com/actions/checkout
+      - name: Checkout Project (main)
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      # https://github.com/actions/setup-go
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21.0'
+
+      - name: Build binaries
+        run: |
+          echo "Starting build"
+          ./bin/build.sh "${VERSION}"
+          echo "Build complete"
+
+      - name: Create Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${VERSION}" \
+            --notes "Created by Github Action on $(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            ./dist/which-dns

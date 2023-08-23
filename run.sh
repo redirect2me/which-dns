@@ -2,7 +2,7 @@
 #
 # run locally
 #
-# NOTE: this may need to be run with 'sudo'
+# NOTE: you may need to run this with 'sudo'
 #
 
 set -o errexit
@@ -14,6 +14,6 @@ LASTMOD=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 
 go run \
     -ldflags "-X main.COMMIT=${COMMIT} -X main.LASTMOD=${LASTMOD}" \
-    . \
+    ./src \
     -local \
     "-disclaimer=warnings go here"
