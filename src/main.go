@@ -9,6 +9,7 @@ import (
 var (
 	//port = flag.Int("port", 80, "port to listen on");
 
+	bindaddr   = flag.String("bind", "[::]:53", "bind address for DNS")
 	disclaimer = flag.String("disclaimer", "", "disclaimer text including in API responses")
 	email      = flag.String("email", "", "email for Let's Encrypt account")
 	hostname   = flag.String("hostname", "localhost", "hostname of this server")
@@ -28,6 +29,7 @@ func main() {
 
 	flag.Parse()
 	if *verbose {
+		logger.Printf("DEBUG: bindaddr    = %s", *bindaddr)
 		logger.Printf("DEBUG: disclaimer  = %s", *disclaimer)
 		logger.Printf("DEBUG: email       = %s", *email)
 		logger.Printf("DEBUG: hostname    = %s", *hostname)

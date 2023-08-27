@@ -100,7 +100,7 @@ func handleWhich(w dns.ResponseWriter, r *dns.Msg) {
 
 func serve(proto string) {
 	logger.Printf("INFO: starting DNS %s", proto)
-	server := &dns.Server{Addr: "[::]:53", Net: proto, TsigSecret: nil, ReusePort: false}
+	server := &dns.Server{Addr: *bindaddr, Net: proto, TsigSecret: nil, ReusePort: false}
 	if err := server.ListenAndServe(); err != nil {
 		logger.Printf("Failed to setup the dns listener for "+proto+": %s", err.Error())
 
