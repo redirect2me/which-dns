@@ -1,0 +1,27 @@
+[Unit]
+Description=Which DNS Server
+ConditionPathExists=/opt/which-dns/which-dns
+After=network.target
+ 
+[Service]
+Type=simple
+User=which-dns
+Group=which-dns
+LimitNOFILE=1024
+
+Restart=on-failure
+RestartSec=10
+startLimitIntervalSec=60
+
+WorkingDirectory=/opt/which-dns
+ExecStart=/opt/which-dns/which-dns-run.sh
+
+# make sure log directory exists and owned by syslog
+PermissionsStartOnly=true
+ExecStartPre=/bin/mkdir -p /var/log/which-dns
+ExecStartPre=/bin/chown syslog:adm /var/log/which-dns
+ExecStartPre=/bin/chmod 755 /var/log/which-dns
+SyslogIdentifier=which-dns
+ 
+[Install]
+WantedBy=multi-user.target

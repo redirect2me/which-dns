@@ -31,11 +31,16 @@ jobs:
         with:
           go-version: '1.21.0'
 
-      - name: Build binaries
+      - name: Build binary
         run: |
           echo "Starting build"
           ./bin/build.sh "${VERSION}"
           echo "Build complete"
+
+      - name: Build package
+        run: |
+          go install github.com/goreleaser/nfpm/v2/cmd/nfpm@latest
+          nfpm pkg --packager deb --target /dist/
 
       - name: Create Release
         env:

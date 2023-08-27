@@ -1,0 +1,33 @@
+# [nfpm](https://nfpm.goreleaser.com/) configuration file for which-dns
+#
+#
+name: "which-dns"
+arch: "amd64"
+platform: "linux"
+version: ${VERSION}
+prerelease: ${PRERELEASE}
+section: "httpd"
+maintainer: "Andrew Marcuse <fileformat@gmail.com>"
+description: |
+  Detects which DNS server is being used
+homepage: "http://which.nameserve.rs/"
+license: "AGPLv3"
+#changelog: "changelog.yaml"
+contents:
+- src: ./dist/which-dns
+  dst: /opt/which-dns/which-dns
+- src: ./pkg/opt/which-dns/which-dns-run.sh
+  dst: /opt/which-dns/which-dns-run.sh
+- src: ./pkg/lib/systemd/system/which-dns.service
+  dst: /lib/systemd/system/which-dns.service
+  file_info:
+    mode: 0755
+- src: ./LICENSE.txt
+  dst: /usr/share/doc/which-dns/copyright
+  file_info:
+    mode: 0644
+scripts:
+  preinstall: ./pkg/scripts/preinstall.sh
+  postinstall: ./pkg/scripts/postinstall.sh
+  preremove: ./pkg/scripts/preremove.sh
+  postremove: ./pkg/scripts/postremove.sh
