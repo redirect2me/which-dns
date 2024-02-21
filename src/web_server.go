@@ -169,11 +169,13 @@ func root_handler(w http.ResponseWriter, r *http.Request) {
 		trackerEl = "\n\t\t" + `<img alt="" src="` + *tracker + `" />`
 	}
 	w.Header().Set("Content-Type", "text/html; charset=utf8")
-	w.Write([]byte(`<html>
+	w.Write([]byte(`<!DOCTYPE html>
+<html lang="en">
 	<head>
 	<meta charset="utf-8">
 		<title>Which DNS</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css" />
 	</head>
 	<body>
