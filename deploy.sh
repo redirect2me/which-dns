@@ -21,7 +21,8 @@ LASTMOD=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 echo "INFO: compiling"
 GOOS=linux GOARCH=amd64 go build \
     -ldflags "-X main.COMMIT=${COMMIT} -X main.LASTMOD=${LASTMOD}" \
-    .
+    -o which-dns \
+    ./src
 
 echo "INFO: copying to server"
 scp -i ~/.ssh/do do-run.sh .env root@${IPADDRESS}:
