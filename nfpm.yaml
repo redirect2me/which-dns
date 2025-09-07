@@ -10,7 +10,7 @@ section: "httpd"
 maintainer: "Andrew Marcuse <fileformat@gmail.com>"
 description: |
   Detects which DNS server is being used
-homepage: "http://which.nameserve.rs/"
+homepage: "http://which.resolve.rs/"
 license: "AGPLv3"
 #changelog: "changelog.yaml"
 contents:

@@ -1,4 +1,4 @@
-# Which DNS: DNS Resolver Detection [<img alt="Which DNS Logo" src="assets/favicon.svg" height="90" align="right"/>](https://which.nameserve.rs/)
+# Which DNS: DNS Resolver Detection [<img alt="Which DNS Logo" src="assets/favicon.svg" height="90" align="right"/>](https://which.resolve.rs/)
 
 This is a combined DNS+HTTP server that shows which DNS server a computer is using.
 
@@ -11,11 +11,11 @@ This is a combined DNS+HTTP server that shows which DNS server a computer is usi
 
 ## Using
 
-My server is running at `which.nameserve.rs`.
+My server is running at `which.resolve.rs`.
 
 Be forewarned: it is running on the cheapest box I could find with a static IP.  You can hit it for light, non-commercial use.  I specifically made the API be JSONP only (i.e. you need to provide a `callback` parameter), so if you abuse it, bad things will happen to your clients!
 
-Make an HTTPS request to `GUID.which.nameserve.rs/api.json?callback=myfunction`.  The `GUID` should be a unique string (not necessarily an actual GUID), different for every call. It will call `myfunction` with an object that has the following fields:
+Make an HTTPS request to `GUID.which.resolve.rs/api.json?callback=myfunction`.  The `GUID` should be a unique string (not necessarily an actual GUID), different for every call. It will call `myfunction` with an object that has the following fields:
 
 * `success` - boolean if it succeeded or not
 * `output` - the result (if it succeeded)

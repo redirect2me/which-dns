@@ -22,7 +22,7 @@ fi
     -hostname "tyche" \
     -ipaddress 127.0.0.1 \
     -local true \
-    -nshostname "which-pkg.nameserve.rs" \
+    -nshostname "which-pkg.resolve.rs" \
     -proxy false \
     -verbose true
 
