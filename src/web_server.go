@@ -244,7 +244,7 @@ func web_main() {
 	mux.HandleFunc("/debug.txt", debug_handler)
 	mux.HandleFunc("/api.json", api_handler)
 
-	lm := LoggingMiddleware(*logger)
+	lm := LoggingMiddleware(logger)
 	//mux = lm(mux)
 
 	if *local {
